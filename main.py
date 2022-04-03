@@ -18,4 +18,67 @@ def screen_clear():
       _ = os.system('cls')
 screen_clear()
 
+############Scope#############
 
+# Local scope
+
+# def runs_scored():
+#    runs = 15
+#    print(f"Inside fun{runs}")
+#
+# runs_scored()
+# #print(f"Outside fun{runs}")
+#
+# # Global scope
+#
+# runs = 10
+#
+# def runs_scored():
+#    runs_total = 15
+#    print(f"Inside fun{runs}")
+#
+# runs_scored()
+# print(f"Outside fun{runs}")
+#
+# # Global constant
+# PI = 3.14159
+#
+# def pie():
+#    print(PI)
+#
+# pie()
+import random
+
+print("Welcome to the Number Guessing Game!")
+print("I am thinking of a number between 1 to 100.")
+
+answer = random.randint(1, 100)
+attempt = 0
+should_continue = True
+
+# while should_continue:
+level = input("Choose a difficulty, Type 'easy' or 'hard': ").lower()
+
+def dificulty(level):
+   if level == 'easy':
+      attempt = 10
+      return (f"You have {attempt} attempts remaining to guess the number.")
+   elif level == 'hard':
+      attempt = 5
+      return (f"You have {attempt} attempts remaining to guess the number.")
+   else:
+      return "Invalid difficulty level"
+
+def compare_number(answer, guess):
+   if answer > guess:
+      print("Too Low")
+   elif answer < guess:
+      print("Too High")
+   else:
+      print(f"You guess it right, correct number is {answer}")
+while should_continue:
+
+   dificulty(level)
+   guess = int(input("Make a guess:"))
+   compare_number(answer, guess)
+# print(random_number())

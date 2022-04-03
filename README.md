@@ -2,3 +2,4 @@
 
 * Scope
 * Namespace
+* Guess the number
