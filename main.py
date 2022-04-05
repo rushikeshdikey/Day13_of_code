@@ -52,6 +52,9 @@ import random
 print("Welcome to the Number Guessing Game!")
 print("I am thinking of a number between 1 to 100.")
 
+EASY_LEVEL_TURN = 10
+HARD_LEVEL_TURN = 5
+
 answer = random.randint(1, 100)
 attempt = 0
 should_continue = True
@@ -59,13 +62,15 @@ should_continue = True
 # while should_continue:
 level = input("Choose a difficulty, Type 'easy' or 'hard': ").lower()
 
-def dificulty(level):
+def dificulty():
    if level == 'easy':
+      turn = EASY_LEVEL_TURN
       attempt = 10
-      return (f"You have {attempt} attempts remaining to guess the number.")
+      print(f"You have {attempt} attempts remaining to guess the number.")
    elif level == 'hard':
+      turn = HARD_LEVEL_TURN
       attempt = 5
-      return (f"You have {attempt} attempts remaining to guess the number.")
+      print(f"You have {attempt} attempts remaining to guess the number.")
    else:
       return "Invalid difficulty level"
 
