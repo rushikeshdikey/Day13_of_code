@@ -49,43 +49,56 @@ screen_clear()
 # pie()
 import random
 
-print("Welcome to the Number Guessing Game!")
-print("I am thinking of a number between 1 to 100.")
-
+# setting global variables
+turn = 0
 EASY_LEVEL_TURN = 10
 HARD_LEVEL_TURN = 5
 
-answer = random.randint(1, 100)
-attempt = 0
-should_continue = True
-
-# while should_continue:
-level = input("Choose a difficulty, Type 'easy' or 'hard': ").lower()
 
 def dificulty():
+   '''function to check difficulty'''
+   level = input("Choose a difficulty, Type 'easy' or 'hard': ").lower()
    if level == 'easy':
-      turn = EASY_LEVEL_TURN
-      attempt = 10
-      print(f"You have {attempt} attempts remaining to guess the number.")
+      return EASY_LEVEL_TURN
    elif level == 'hard':
-      turn = HARD_LEVEL_TURN
-      attempt = 5
-      print(f"You have {attempt} attempts remaining to guess the number.")
+      return HARD_LEVEL_TURN
    else:
       return "Invalid difficulty level"
 
-def compare_number(answer, guess):
+# function to compare the guess
+def compare_number(answer, guess, turn):
+   """checks answer against guess. Returns the number of turns remaining."""
    if answer > guess:
       print("Too Low")
+      return turn - 1
    elif answer < guess:
       print("Too High")
+      return turn - 1
    else:
       print(f"You guess it right, correct number is {answer}")
-while should_continue:
 
-   dificulty(level)
-   guess = int(input("Make a guess:"))
-   compare_number(answer, guess)
-# print(random_number())
+def game():
+   print("Welcome to the Number Guessing Game!")
+   print("I am thinking of a number between 1 to 100.")
 
+   # to chosse random number to answer
+   answer = random.randint(1, 100)
 
+   # storing number of turn form function
+   turn = dificulty()
+
+   guess = 0
+   while guess != answer:
+      print(f"You have {turn} attempts remaining to guess the number.")
+      guess = int(input("Make a guess:"))
+
+      #Track the number of turns and reduce by 1 if they get it wrong.
+      turn = compare_number(answer, guess, turn)
+      if turn == 0:
+         print("You are out of guess!!")
+         return
+      else:
+         guess !=answer
+         print("Guess again")
+
+game()
